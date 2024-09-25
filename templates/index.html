@@ -7,20 +7,9 @@
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
     <style>
-        /* Option 1: Colorful Gradient Background */
-        /* body {
-            background: linear-gradient(135deg, #6a11cb 0%, #2575fc 100%);
-            height: 100vh;
-            margin: 0;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-        } */
-
-        /* Option 2: Image-Based Background (uncomment this to use an image background) */
-        
+        /* Image-Based Background */
         body {
-            background-image: url('https://storage.cloud.google.com/tryexp/anemometer-3977718.jpg');
+            background-image: url('https://storage.googleapis.com/your-bucket-name/anemometer-3977718.jpg');
             background-size: cover;
             background-position: center;
             height: 100vh;
@@ -29,13 +18,13 @@
             justify-content: center;
             align-items: center;
         }
-       
 
         .container {
-            background-color: #ffffff;
+            background-color: rgba(255, 255, 255, 0.8); /* Semi-transparent white background */
             border-radius: 10px;
             padding: 20px;
             box-shadow: 0 0 20px rgba(0, 0, 0, 0.2);
+            max-width: 700px; /* Set a maximum width to ensure it doesn’t stretch too much */
         }
 
         .navbar {
@@ -50,7 +39,7 @@
 <body>
     <nav class="navbar fixed-top navbar-expand-lg navbar-dark bg-primary">
         <a class="navbar-brand" href="#">
-            <img src="https://storage.cloud.google.com/tryexp/cloudy.png" width="30" height="30" class="d-inline-block align-top" alt="">
+            <img src="https://storage.googleapis.com/your-bucket-name/cloudy.png" width="30" height="30" class="d-inline-block align-top" alt="">
             Weather
         </a>
     </nav>
