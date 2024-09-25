@@ -5,38 +5,58 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Colorful Weather App</title>
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
     <style>
+        /* Option 1: Colorful Gradient Background */
+        /* body {
+            background: linear-gradient(135deg, #6a11cb 0%, #2575fc 100%);
+            height: 100vh;
+            margin: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        } */
+
+        /* Option 2: Image-Based Background (uncomment this to use an image background) */
+        
         body {
-            background-color: rgb(57, 7, 107); /* Light gray background color */
+            background-image: url('https://storage.cloud.google.com/tryexp/background.jfif');
+            background-size: cover;
+            background-position: center;
+            height: 100vh;
+            margin: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
         }
+       
 
         .container {
-            background-color: #ffffff; /* White container background color */
+            background-color: #ffffff;
             border-radius: 10px;
             padding: 20px;
-            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-            margin-top: 60px; /* Adjusted to make space for the fixed Navbar */
+            box-shadow: 0 0 20px rgba(0, 0, 0, 0.2);
         }
 
         .navbar {
-            background-color: #007bff; /* Blue Navbar color */
+            background-color: #007bff;
         }
 
         .navbar-brand {
-            color: #ffffff; /* White text color for Navbar brand */
+            color: #ffffff;
         }
     </style>
 </head>
 <body>
-    <nav class="navbar navbar-fixed-top navbar-expand-lg navbar-dark bg-primary">
+    <nav class="navbar fixed-top navbar-expand-lg navbar-dark bg-primary">
         <a class="navbar-brand" href="#">
-            <img src="https://storage.googleapis.com/bkt-static-tt/logo.png" width="30" height="30" class="d-inline-block align-top" alt="">
-             TechTrapture Weather App
+            <img src="https://storage.cloud.google.com/tryexp/cloudy.png" width="30" height="30" class="d-inline-block align-top" alt="">
+            Weather
         </a>
     </nav>
 
-    <div class="container mt-5">
-        <h1 class="mb-4 text-primary">Weather App</h1>
+    <div class="container mt-5"> 
+        <h1 class="mb-4 text-primary text-center">Weather Forecast</h1>
         <form method="post">
             <div class="form-group">
                 <label for="city">Enter city name:</label>
@@ -44,14 +64,52 @@
             </div>
             <button type="submit" class="btn btn-primary">Get Weather</button>
         </form>
-        
+
         {% if weather_data %}
             <div class="mt-4">
-                <h2>Weather in {{ weather_data['name'] }}, {{ weather_data['sys']['country'] }}:</h2>
-                <p>Description: {{ weather_data['weather'][0]['description'] }}</p>
-                <p>Temperature: {{ weather_data['main']['temp'] }}°C</p>
-                <p>Humidity: {{ weather_data['main']['humidity'] }}%</p>
-                <p>Wind Speed: {{ weather_data['wind']['speed'] }} m/s</p>
+                <h2 class="text-center">Weather in {{ weather_data['name'] }}, {{ weather_data['sys']['country'] }}</h2>
+                <div class="card-deck mt-4">
+                    <!-- Weather Condition -->
+                    <div class="card">
+                        <div class="card-body text-center">
+                            <h5 class="card-title">Condition</h5>
+                            <img src="https://openweathermap.org/img/w/{{ weather_data['weather'][0]['icon'] }}.png" alt="Weather Icon">
+                            <p class="card-text">{{ weather_data['weather'][0]['description'] }}</p>
+                        </div>
+                    </div>
+                    <!-- Temperature -->
+                    <div class="card">
+                        <div class="card-body text-center">
+                            <h5 class="card-title">Temperature</h5>
+                            <i class="fas fa-thermometer-half fa-2x"></i>
+                            <p class="card-text">{{ weather_data['main']['temp'] }}°C</p>
+                        </div>
+                    </div>
+                    <!-- Humidity -->
+                    <div class="card">
+                        <div class="card-body text-center">
+                            <h5 class="card-title">Humidity</h5>
+                            <i class="fas fa-tint fa-2x"></i>
+                            <p class="card-text">{{ weather_data['main']['humidity'] }}%</p>
+                        </div>
+                    </div>
+                    <!-- Wind Speed -->
+                    <div class="card">
+                        <div class="card-body text-center">
+                            <h5 class="card-title">Wind Speed</h5>
+                            <i class="fas fa-wind fa-2x"></i>
+                            <p class="card-text">{{ weather_data['wind']['speed'] }} m/s</p>
+                        </div>
+                    </div>
+                    <!-- Air Pressure -->
+                    <div class="card">
+                        <div class="card-body text-center">
+                            <h5 class="card-title">Air Pressure</h5>
+                            <i class="fas fa-tachometer-alt fa-2x"></i>
+                            <p class="card-text">{{ weather_data['main']['pressure'] }} hPa</p>
+                        </div>
+                    </div>
+                </div>
             </div>
         {% else %}
             <p class="mt-4">Weather data unavailable.</p>
